@@ -1,0 +1,184 @@
+body, div
+{
+	padding: 0;
+	margin: 0;
+}
+body
+{
+	background-color: #FFE373;
+}
+
+
+#masterContainer
+{
+	position: absolute;
+	right: 30%;
+	top: 0px;
+	bottom: 40px;
+
+	padding-right: 20px;
+
+	background-color: white;
+}
+
+#content
+{
+	width: 600px;
+	padding: 10px;
+}
+
+#navContainer
+{
+	position: absolute;
+	right: 0px;
+	left: 70%;
+
+	margin-left: -10px;
+}
+
+#siteTitle
+{
+	font-family: helvetica;
+	font-size: 50px;
+	color: white;
+	float: right;
+	margin-top: 0px;
+	margin-right: 20px;
+}
+
+@keyframes slowRotateIn
+{
+	from { transform: rotate(350deg); }
+	to { transform: rotate(360deg); }
+}
+
+@keyframes slowRotateOut
+{
+	from { transform: rotate(360deg); }
+	to { transform: rotate(350deg); }
+}
+
+#avatarContainer
+{
+	position: fixed;
+	bottom: 60px;
+	right: 10px;
+	width: 220px;
+	height: 220px;
+	animation-name: slowRotateOut;
+	animation-duration: 1s;
+	transform: rotate(350deg);
+	background-color: purple;
+}
+
+#avatarContainer:hover, #avatarContainer:active
+{
+	animation-name: slowRotateIn;
+	animation-duration: .5s;
+	transform: rotate(360deg);
+}
+
+#avatar
+{
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+#footer
+{
+	position: absolute;
+	text-align: center;
+	line-height: 40px;
+	font-family: helvetica;
+	color: white;
+	bottom: 0px;
+	height: 40px;
+	left: 0px;
+	right: 0px;
+	background-color: #C74BD8;
+}
+
+@keyframes navHoverIn
+{
+	from { margin-left: 0px; }
+	to { margin-left: -10px;}
+}
+
+@keyframes navHoverOut
+{
+	from { margin-left: -10px; }
+	to { margin-left: 0px;}
+}
+
+.navLink
+{
+	text-decoration: none;
+	color: white;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	font-family: helvetica;
+	font-weight: bold;
+	font-size: 20px;
+	border-radius: 20px 0px 0px 20px;
+
+}
+
+.currentNavLink
+{
+	margin-left: -10px;
+}
+
+.notCurrentNavLink
+{
+	animation-name: navHoverOut;
+	animation-duration: .2s;
+}
+
+.notCurrentNavLink:hover
+{
+	animation-name: navHoverIn;
+	animation-duration: .2s;
+	margin-left: -10px;
+}
+
+.colorBlue
+{
+	background-color: #4BA2D8;
+}
+
+.colorBlue:hover
+{
+	background-color: #3B86B3;
+}
+
+.colorPurple
+{
+	background-color: #C74BD8;
+}
+
+.colorPurple:hover
+{
+	background-color: #A43BB3;
+}
+
+.colorGreen
+{
+	background-color: #5CD84B;
+}
+
+.colorGreen:hover
+{
+	background-color: #4AB33B;
+}
+
+.colorOrange
+{
+	background-color: #D8804B;
+}
+
+.colorOrange:hover
+{
+	background-color: #B3683B
+}
