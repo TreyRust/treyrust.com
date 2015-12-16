@@ -68,7 +68,7 @@ body
 	animation-name: slowRotateOut;
 	animation-duration: 1s;
 	transform: rotate(350deg);
-	background-color: purple;
+	background-color: #4BA2D8;
 }
 
 #avatarContainer:hover, #avatarContainer:active
