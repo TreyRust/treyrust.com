@@ -20,7 +20,7 @@ class GitHubPropagator:
 	def _formatProject(self, project):
 		return {"name": project['name'], "lastPush": convertTime(project['pushed_at']),
 				"created": convertTime(project['created_at']), "forkCount": project['forks'],
-				"description": project['description']}
+				"description": project['description'], "url": project['html_url']}
 
 	def getReadme(self, name):
 		url = "https://api.github.com/repos/%s/%s/readme" % (self.gitUser, name)

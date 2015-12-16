@@ -1,11 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 import projectpropagator, pagekit, mistune
 
 app = Flask(__name__)
 
 def getKit(base):
-	navLinks = [('timeline', 'Timeline'),
-				('blog', 'Blog'),
+	navLinks = [('blog', 'Blog'),
 				('demos', 'Tech Demos'),
 				('projects', 'Projects'),
 				('codingchallenges', "Trey's Coding Challenges")]
@@ -23,7 +22,11 @@ def getKit(base):
 
 @app.route('/', methods=['GET'])
 def root_get():
-	return render_template('template.html', kit = getKit('timeline'))
+	return redirect('/blog/')
+
+@app.route('/blog/', methods=['GET'])
+def blog_get():
+	return render_template('template.html', kit = getKit('blog'))
 
 @app.route('/projects/<projectName>', methods=['GET'])
 def projects_name_get(projectName):

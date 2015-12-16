@@ -8,6 +8,11 @@ body
 	background-color: #FFE373;
 }
 
+h1, h2, h3, h4, h5, h6, strong
+{
+	font-family: helvetica;
+}
+
 p
 {
 	font-family: helvetica;
@@ -39,6 +44,7 @@ td
 
 a
 {
+	font-family: helvetica;
 	text-decoration: none;
 	color: #4BA2D8;
 }
