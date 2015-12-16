@@ -1,11 +1,29 @@
 from flask import Flask, render_template
-import projectpropagator, mistune
+import projectpropagator, pagekit, mistune
 
 app = Flask(__name__)
 
+def getKit(base):
+	navLinks = [('timeline', 'Timeline'),
+				('blog', 'Blog'),
+				('demos', 'Tech Demos'),
+				('projects', 'Projects'),
+				('codingchallenges', "Trey's Coding Challenges")]
+
+	cleanedNavLinks = []
+
+	for top, title in navLinks:
+		current = False
+		if base == top:
+			current = True
+
+		cleanedNavLinks.append((top, title, current))
+
+	return {'nav': cleanedNavLinks}
+
 @app.route('/', methods=['GET'])
 def root_get():
-	return render_template('template.html')
+	return render_template('template.html', kit = getKit('timeline'))
 
 @app.route('/projects/<projectName>', methods=['GET'])
 def projects_name_get(projectName):
@@ -18,7 +36,8 @@ def projects_name_get(projectName):
 	mdown = mistune.Markdown()
 	readme = mdown(readme)
 
-	return render_template("projectpage.html", project = project, readme = readme)
+	return render_template("projectpage.html", kit = getKit('projects'), 
+							project = project, readme = readme)
 
 
 @app.route('/projects/', methods=['GET'])
@@ -28,7 +47,7 @@ def projects_get():
 	if not allProjects:
 		return render_template('projects.html', failedLoad = True)
 
-	return render_template('projects.html', allProjects = allProjects)
+	return render_template('projects.html', kit = getKit('projects'), allProjects = allProjects)
 
 if __name__ == '__main__':
 	app.run(debug = True, host='0.0.0.0')

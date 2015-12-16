@@ -6,8 +6,6 @@
 </head>
 <body>
 
-<div id='avatarContainer'><img src="{{ url_for('static', filename='avatar.png')}}" id='avatar'/><p id='meText'>It's a me!</p></div>
-
 <div id='masterContainer'>
 	<div id='content'>
 		{% block content %}{% endblock %}
@@ -15,15 +13,47 @@
 </div>
 
 <div id='navContainer'>
-	<a class='navLink colorBlue notCurrentNavLink' href='ayyy'>Timeline</a>
-	<a class='navLink colorGreen notCurrentNavLink' href='ayyy'>Blog</a>
-	<a class='navLink colorPurple notCurrentNavLink' href='ayyy'>Tech Demos</a>
-	<a class='navLink colorOrange currentNavLink' href='/projects/'>Projects</a>
-	<a class='navLink colorBlue notCurrentNavLink' href='ayyy'>Post-mortems</a>
-	<a class='navLink colorGreen notCurrentNavLink' href='ayyy'>Trey's Coding Challenges</a>
+	{% set count = 1 %}
+	{% for top, title, current in kit['nav'] %}
+		<a class='
+		navLink
+
+		{% if count == 1 %}
+			colorBlue
+		{% elif count == 2 %}
+			colorGreen
+		{% elif count == 3 %}
+			colorPurple
+		{% elif count == 4 %}
+			colorOrange
+			{% set count = 0%}
+		{% endif %}
+
+		{% if current %}
+			currentNavLink
+		{% else %}
+			notCurrentNavLink
+		{% endif %}'
+		href='/{{ top }}/'>{{ title }}</a>
+
+		{% set count = count + 1 %}
+	{% endfor %}
 
 	<p id='siteTitle'>TreyRust</p>
 </div>
+
+{% if paginated %}
+<div id='fbContainer'>
+	{% if pageBack %}
+		<a href='{{ pageBack }}' class='fbButtons'><</a>
+	{% endif %}
+	{% if pageForward %}
+		<a href='{{ pageForward }}' class='fbButtons'>></a>
+	{% endif %}
+</div>
+{% endif %}
+
+<div id='avatarContainer'><img src="{{ url_for('static', filename='avatar.png')}}" id='avatar'/><p id='meText'>It's a me!</p></div>
 
 <div id='footer'>
 	Trey Is Awesome(c)

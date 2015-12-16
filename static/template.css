@@ -138,6 +138,23 @@ a:hover
 	display: block;
 }
 
+#fbContainer
+{
+	position: absolute;
+	left: 10px;
+	bottom: 40px;
+}
+
+.fbButtons
+{
+	color:white;
+	font-family: helvetica;
+	font-size: 80px;
+	font-weight: bold;
+	float: left;
+}
+
+
 #footer
 {
 	position: absolute;
