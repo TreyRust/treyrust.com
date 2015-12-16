@@ -11,7 +11,8 @@ class GitHubPropagator:
 
 	def _formatProject(self, project):
 		return {"name": project['name'], "lastUpdated": project['updated_at'],
-				"created": project['created_at'], "forkCount": project['forks']}
+				"created": project['created_at'], "forkCount": project['forks'],
+				"description": project['description']}
 
 	def getProject(self, name):
 		url = "https://api.github.com/repos/%s/%s" % (self.gitUser, name)

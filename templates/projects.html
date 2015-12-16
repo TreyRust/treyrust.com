@@ -1,0 +1,12 @@
+{% extends 'template.html' %}
+
+{% block content %}
+	{% for project in allProjects %}
+		<a href="/projects/{{ project['name' ]}}"><h2>{{ project['name'] }}</h2></a>
+		<p>{{ project['description'] }}</p>
+		<p>Last Updated: {{ project['lastUpdated'] }}</p>
+		<p>First Created: {{ project['created'] }}</p>
+		<p>Fork count: {{ project['forkCount'] }}</p>
+	{% endfor %}
+
+{% endblock content %}
