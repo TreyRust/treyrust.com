@@ -10,7 +10,7 @@ class GitHubPropagator:
 		return resp.json(), resp.status_code
 
 	def _formatProject(self, project):
-		return {"name": project['name'], "lastUpdated": project['updated_at'],
+		return {"name": project['name'], "lastUpdated": project['updated_at'].strftime('%B %d, %Y'),
 				"created": project['created_at'], "forkCount": project['forks'],
 				"description": project['description']}
 

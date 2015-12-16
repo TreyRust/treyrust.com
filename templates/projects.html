@@ -2,11 +2,23 @@
 
 {% block content %}
 	{% for project in allProjects %}
-		<a href="/projects/{{ project['name' ]}}"><h2>{{ project['name'] }}</h2></a>
-		<p>{{ project['description'] }}</p>
-		<p>Last Updated: {{ project['lastUpdated'] }}</p>
-		<p>First Created: {{ project['created'] }}</p>
-		<p>Fork count: {{ project['forkCount'] }}</p>
+		<table>
+			<tr>
+				<th>Project</th>
+				<th>Created</th>
+				<th>Last Push</th>
+				<th>Forks</th>
+				<th>Contribution</th>
+			</tr>
+			<tr>
+				<td><a href="/projects/{{ project['name' ]}}">{{ project['name'] }}</td></a>
+				<td>{{ project['created'] }}</td>
+				<td>{{ project['lastUpdated'] }}</td>
+				<td>{{ project['forkCount'] }}</td>
+				<td>Creator</td>
+
+			</tr>
+		</table>
 	{% endfor %}
 
 {% endblock content %}
