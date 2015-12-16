@@ -9,8 +9,7 @@ class GitHubPropagator:
 		resp = requests.get(url, headers = {"User-agent": self.userAgent})
 		return resp.json(), resp.status_code
 
-
-	def _stripProject(self, project):
+	def _formatProject(self, project):
 		return {"name": project['name'], "lastUpdated": project['updated_at'],
 				"created": project['created_at'], "forkCount": project['forks']}
 
@@ -18,7 +17,7 @@ class GitHubPropagator:
 		url = "https://api.github.com/repos/%s/%s" % (self.gitUser, name)
 		repo, status = self._getRequest(url)
 
-		return self._stripProject(repo)
+		return self._formatProject(repo)
 
 	def getAllProjects(self):
 		repos, status = self._getRequest("https://api.github.com/users/%s/repos" % self.gitUser)
@@ -26,7 +25,7 @@ class GitHubPropagator:
 		allProjects = []
 
 		for project in repos:
-			allProjects.append(self._stripProject(project))
+			allProjects.append(self._formatProject(project))
 
 		return allProjects
 
