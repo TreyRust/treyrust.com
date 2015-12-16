@@ -1,4 +1,4 @@
-import requests, requests_cache, datetime
+import requests, requests_cache, datetime, base64
 
 #Gotta cache that shit, because otherwise we reach the hourly rate limit of 60 pretty quickly.
 #With an authenticated request, that goes up to 5000, but I still don't like calling it
@@ -21,6 +21,15 @@ class GitHubPropagator:
 		return {"name": project['name'], "lastPush": convertTime(project['pushed_at']),
 				"created": convertTime(project['created_at']), "forkCount": project['forks'],
 				"description": project['description']}
+
+	def getReadme(self, name):
+		url = "https://api.github.com/repos/%s/%s/readme" % (self.gitUser, name)
+		readme, status = self._getRequest(url)
+
+		if status != 200:
+			return None
+
+		return base64.b64decode(readme['content'])
 
 	def getProject(self, name):
 		url = "https://api.github.com/repos/%s/%s" % (self.gitUser, name)

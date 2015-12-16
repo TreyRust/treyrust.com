@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import projectpropagator
+import projectpropagator, mistune
 
 app = Flask(__name__)
 
@@ -14,7 +14,11 @@ def projects_name_get(projectName):
 	if not project:
 		return render_template("projectpage.html", failedLoad = True)
 
-	return render_template("projectpage.html", project = project)
+	readme = myProp.getReadme(projectName)
+	mdown = mistune.Markdown()
+	readme = mdown(readme)
+
+	return render_template("projectpage.html", project = project, readme = readme)
 
 
 @app.route('/projects/', methods=['GET'])
