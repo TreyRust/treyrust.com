@@ -13,6 +13,40 @@ p
 	font-family: helvetica;
 }
 
+h1
+{
+	margin: 0px;
+	padding: 0px;
+	font-family: helvetica;
+	font-weight: 200;
+}
+
+table
+{
+	font-family: helvetica;
+}
+
+td, th
+{
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+td
+{
+	padding-top: 10px;
+}
+
+a
+{
+	text-decoration: none;
+	color: #4BA2D8;
+}
+
+a:hover
+{
+	color:#3B86B3;
+}
 
 #masterContainer
 {
@@ -142,7 +176,11 @@ p
 	font-weight: bold;
 	font-size: 20px;
 	border-radius: 20px 0px 0px 20px;
+}
 
+.navLink:hover
+{
+	color: white;
 }
 
 .currentNavLink
