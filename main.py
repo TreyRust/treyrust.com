@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 def getKit(base):
 	navLinks = [('blog', 'Blog'),
-				('demos', 'Tech Demos'),
 				('projects', 'Projects'),
 				('postmortems', 'Project Post-mortems'),
 				('codingchallenges', "Trey's Coding Challenges")]
