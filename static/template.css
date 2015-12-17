@@ -101,12 +101,20 @@ a:hover
 	background-color: #C74BD8;
 }
 
+.tumLinkContainer
+{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	display: block;
+	text-align: center;
+}
+
 .postDivider
 {
 	width: 600px;
 	height: 1px;
 	background-color: silver;
-	margin-top: 20px;
+	margin-top: 0;
 	margin-bottom: 20px;
 }
 
