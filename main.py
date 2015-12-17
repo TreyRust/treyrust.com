@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect
-import projectpropagator, tumblrpropagator, pagekit, mistune
+import projectpropagator, tumblrpropagator, mistune
 
 app = Flask(__name__)
 
