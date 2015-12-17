@@ -1,3 +1,8 @@
+html, body
+{
+	height: 100%;
+}
+
 body, div
 {
 	padding: 0;
@@ -54,12 +59,18 @@ a:hover
 	color:#3B86B3;
 }
 
-#masterContainer
+#wholeContainer
+{
+	background-color: blue;
+}
+
+#contentContainer
 {
 	position: absolute;
 	right: 30%;
 	top: 0px;
-	bottom: 40px;
+	min-height: 100%;
+	margin-bottom: 40px;/* footer clearance*/
 
 	padding-right: 20px;
 
@@ -70,6 +81,15 @@ a:hover
 {
 	width: 600px;
 	padding: 10px;
+}
+
+.postDivider
+{
+	width: 600px;
+	height: 1px;
+	background-color: silver;
+	margin-top: 60px;
+	margin-bottom: 20px;
 }
 
 #navContainer
@@ -163,15 +183,16 @@ a:hover
 
 #footer
 {
-	position: absolute;
+	position: fixed;
 	text-align: center;
 	line-height: 40px;
 	font-family: helvetica;
 	color: white;
-	bottom: 0px;
 	height: 40px;
-	left: 0px;
-	right: 0px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
 	background-color: #C74BD8;
 }
 

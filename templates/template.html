@@ -6,11 +6,22 @@
 </head>
 <body>
 
-<div id='masterContainer'>
+<div id='blah'>
+<div id='contentContainer'>
 	<div id='content'>
 		{% block content %}{% endblock %}
+
+
 	</div>
+		
 </div>
+
+<div id='footer'>
+			Trey Is Awesome(c)
+</div>
+</div>
+
+
 
 <div id='navContainer'>
 	{% set count = 1 %}
@@ -40,6 +51,7 @@
 	{% endfor %}
 
 	<p id='siteTitle'>TreyRust</p>
+
 </div>
 
 {% if paginated %}
@@ -55,9 +67,10 @@
 
 <div id='avatarContainer'><img src="{{ url_for('static', filename='avatar.png')}}" id='avatar'/><p id='meText'>It's a me!</p></div>
 
-<div id='footer'>
-	Trey Is Awesome(c)
-</div>
+
+
+
+
 
 </body>
 </html>

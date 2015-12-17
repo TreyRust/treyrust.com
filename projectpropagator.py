@@ -3,7 +3,7 @@ import requests, requests_cache, datetime, base64
 #Gotta cache that shit, because otherwise we reach the hourly rate limit of 60 pretty quickly.
 #With an authenticated request, that goes up to 5000, but I still don't like calling it
 #every single time. This is also a lot faster.
-requests_cache.install_cache('github-cache', backend='sqlite', expire_after=3600)
+requests_cache.install_cache('github-cache3', backend='sqlite', expire_after=3600)
 
 def convertTime(gitTimestamp):
 	return datetime.datetime.strptime(gitTimestamp, "%Y-%m-%dT%H:%M:%SZ").strftime('%b %d, %Y')
@@ -18,9 +18,14 @@ class GitHubPropagator:
 		return resp.json(), resp.status_code
 
 	def _formatProject(self, project):
+		isOwner = False
+
+		if project['owner']['login'] == self.gitUser:
+			isOwner = True
+
 		return {"name": project['name'], "lastPush": convertTime(project['pushed_at']),
 				"created": convertTime(project['created_at']), "forkCount": project['forks'],
-				"description": project['description'], "url": project['html_url']}
+				"description": project['description'], "url": project['html_url'], "owner": isOwner}
 
 	def getReadme(self, name):
 		url = "https://api.github.com/repos/%s/%s/readme" % (self.gitUser, name)

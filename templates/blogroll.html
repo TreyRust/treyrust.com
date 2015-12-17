@@ -1,0 +1,18 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+{% for title, images, body in posts %}
+	{% if title %}
+		<h1>{{ title }}</h1>
+	{% elif images %}
+		{% for img in images %}
+			<img src={{ img }} />
+		{% endfor %}
+	{% endif %}
+	{{ body|safe }}
+	<div class='postDivider'></div>
+{% endfor %}
+
+
+{% endblock content %}

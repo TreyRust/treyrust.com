@@ -1,13 +1,12 @@
 from flask import Flask, render_template, redirect
-import projectpropagator, pagekit, mistune
+import projectpropagator, tumblrpropagator, pagekit, mistune
 
 app = Flask(__name__)
 
 def getKit(base):
 	navLinks = [('blog', 'Blog'),
 				('demos', 'Tech Demos'),
-				('projects', 'Projects'),
-				('codingchallenges', "Trey's Coding Challenges")]
+				('projects', 'Projects')]
 
 	cleanedNavLinks = []
 
@@ -26,7 +25,10 @@ def root_get():
 
 @app.route('/blog/', methods=['GET'])
 def blog_get():
-	return render_template('template.html', kit = getKit('blog'))
+	tumProp = tumblrpropagator.tumblrPropagator('treyrust', 'treyrust.com')
+	posts = tumProp.getPosts()
+
+	return render_template('blogroll.html', kit = getKit('blog'), posts = posts)
 
 @app.route('/projects/<projectName>', methods=['GET'])
 def projects_name_get(projectName):

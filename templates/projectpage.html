@@ -1,11 +1,8 @@
 {% extends 'template.html' %}
 
 {% block content %}
-
-	<h1>Project: {{ project['name'] }}</h1>
 	<a href="{{ project['url'] }}" target='_blank'>View on github</a>
-	<tr>
-	</tr>
+
 	{{ readme|safe }}
 
 {% endblock content %}

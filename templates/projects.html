@@ -15,7 +15,11 @@
 				<td>{{ project['created'] }}</td>
 				<td>{{ project['lastPush'] }}</td>
 				<td>{{ project['forkCount'] }}</td>
-				<td>Creator</td>
+				{% if project['owner'] %}
+					<td>Owner</td>
+				{% else %}
+					<td>Contributor</td>
+				{% endif %}
 
 			</tr>
 		</table>
