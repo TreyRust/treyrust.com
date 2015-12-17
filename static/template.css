@@ -21,7 +21,6 @@ h1, h2, h3, h4, h5, h6, strong
 
 p
 {
-	margin-left: 10px;
 	font-family: helvetica;
 }
 
@@ -80,8 +79,10 @@ a:hover
 
 #content
 {
-	width: 600px;
+	width: 620px;
+
 	padding: 10px;
+	padding-left: 20px;
 }
 
 
@@ -117,9 +118,7 @@ a:hover
 	margin-top: 0;
 	margin-bottom: 20px;
 
-	/*It would be 600, but we subtract 20 for the additional padding that
-		contentContainer gives us*/
-	width: 580px;
+	width: 590px;
 	margin-left: 20px;
 }
 
