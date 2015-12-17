@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% for title, images, body in posts %}
+{% for title, images, body, link in posts %}
 	{% if title %}
 		<h1>{{ title }}</h1>
 	{% elif images %}
@@ -11,6 +11,9 @@
 		{% endfor %}
 	{% endif %}
 	{{ body|safe }}
+
+	<a href='{{ link }}' target="_blank">View on tumblr</a>
+
 	<div class='postDivider'></div>
 {% endfor %}
 

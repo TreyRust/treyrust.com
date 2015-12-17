@@ -3,7 +3,7 @@ import requests, requests_cache, datetime, base64
 #Gotta cache that shit, because otherwise we reach the hourly rate limit of 60 pretty quickly.
 #With an authenticated request, that goes up to 5000, but I still don't like calling it
 #every single time. This is also a lot faster.
-requests_cache.install_cache('request_cache', backend='sqlite', expire_after=3600)
+requests_cache.install_cache('request_cache1', backend='sqlite', expire_after=3600)
 
 def convertTime(gitTimestamp):
 	return datetime.datetime.strptime(gitTimestamp, "%Y-%m-%dT%H:%M:%SZ").strftime('%b %d, %Y')

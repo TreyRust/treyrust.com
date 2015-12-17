@@ -24,9 +24,9 @@ class tumblrPropagator():
 
 		for post in blog['posts']:
 			if post['type'] == u'photo':
-				allPosts.append((None, [post['photo-url-500']], post['photo-caption']))
+				allPosts.append((None, [post['photo-url-500']], post['photo-caption'], post['url']))
 			elif post['type'] == u'regular':
-				allPosts.append((post['regular-title'], None, post['regular-body']))
+				allPosts.append((post['regular-title'], None, post['regular-body'], post['url']))
 			else:
 				miscount += 1
 				#The idea is that the function will call itself again

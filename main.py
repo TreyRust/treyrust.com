@@ -7,7 +7,8 @@ def getKit(base):
 	navLinks = [('blog', 'Blog'),
 				('demos', 'Tech Demos'),
 				('projects', 'Projects'),
-				('postmortems', 'Project Post-mortems')]
+				('postmortems', 'Project Post-mortems'),
+				('codingchallenges', "Trey's Coding Challenges")]
 
 	cleanedNavLinks = []
 
@@ -42,6 +43,10 @@ def blog_get():
 @app.route('/postmortems/', methods=['GET'])
 def postmortems_get():
 	return blogHelper('postmortems', 'project postmortems')
+
+@app.route('/codingchallenges/', methods=['GET'])
+def codingchallenges_get():
+	return blogHelper('codingchallenges', "trey's coding challenges")
 
 
 @app.route('/projects/<projectName>', methods=['GET'])

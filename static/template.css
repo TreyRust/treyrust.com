@@ -60,11 +60,6 @@ a:hover
 	color:#3B86B3;
 }
 
-#wholeContainer
-{
-	background-color: blue;
-}
-
 #contentContainer
 {
 	position: absolute;
@@ -89,7 +84,7 @@ a:hover
 	width: 600px;
 	height: 1px;
 	background-color: silver;
-	margin-top: 60px;
+	margin-top: 20px;
 	margin-bottom: 20px;
 }
 
