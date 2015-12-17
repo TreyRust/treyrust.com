@@ -6,7 +6,7 @@ app = Flask(__name__)
 def getKit(base):
 	navLinks = [('blog', 'Blog'),
 				('projects', 'Projects'),
-				('postmortems', 'Project Post-mortems'),
+				('postmortems', 'Project Postmortems'),
 				('codingchallenges', "Trey's Coding Challenges")]
 
 	cleanedNavLinks = []
@@ -18,7 +18,7 @@ def getKit(base):
 
 		cleanedNavLinks.append((top, title, current))
 
-	return {'nav': cleanedNavLinks}
+	return {'nav': cleanedNavLinks, 'baseUrl': base}
 
 
 def blogHelper(page, tag, startPos = 0, currentPage = 1):
@@ -27,8 +27,6 @@ def blogHelper(page, tag, startPos = 0, currentPage = 1):
 
 	if not posts:
 		return render_template('blogroll.html', kit = getKit(page), failedLoad = True)
-
-
 
 	return render_template('blogroll.html', kit = getKit(page),
 											posts = posts,
@@ -41,13 +39,13 @@ def blogHelper(page, tag, startPos = 0, currentPage = 1):
 def root_get():
 	return redirect('/blog/')
 
+
 @app.route('/blog/', methods=['GET'])
 @app.route('/blog/page/<num>', methods=['GET'])
 def blog_get(page = None, num = None):
 	currentPage = 1
 	startPos = 0
 	if num:
-
 		pageNum = 1
 		try:
 			pageNum = int(num)
@@ -60,9 +58,11 @@ def blog_get(page = None, num = None):
 
 	return blogHelper('blog', 'treyrust.com', startPos, currentPage)
 
+
 @app.route('/postmortems/', methods=['GET'])
 def postmortems_get():
 	return blogHelper('postmortems', 'project postmortems')
+
 
 @app.route('/codingchallenges/', methods=['GET'])
 def codingchallenges_get():
@@ -92,6 +92,7 @@ def projects_get():
 		return render_template('projects.html', failedLoad = True)
 
 	return render_template('projects.html', kit = getKit('projects'), allProjects = allProjects)
+
 
 if __name__ == '__main__':
 	app.run(debug = True, host='0.0.0.0')

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='template.css')}}"/>
-	<title></title>
+	<title>{{ kit['baseUrl'] }}</title>
 </head>
 <body>
 
@@ -14,11 +14,9 @@
 	</div>
 
 	<div id='footer'>
-		Trey Is Awesome(c)
+		Trey Is Awesome
 	</div>
 </div>
-
-
 
 <div id='navContainer'>
 	{% set count = 1 %}
@@ -62,11 +60,6 @@
 {% endif %}
 
 <div id='avatarContainer'><img src="{{ url_for('static', filename='avatar.png')}}" id='avatar'/><p id='meText'>It's a me!</p></div>
-
-
-
-
-
 
 </body>
 </html>
