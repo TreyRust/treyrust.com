@@ -6,7 +6,8 @@ app = Flask(__name__)
 def getKit(base):
 	navLinks = [('blog', 'Blog'),
 				('demos', 'Tech Demos'),
-				('projects', 'Projects')]
+				('projects', 'Projects'),
+				('postmortems', 'Project Post-mortems')]
 
 	cleanedNavLinks = []
 
@@ -28,7 +29,21 @@ def blog_get():
 	tumProp = tumblrpropagator.tumblrPropagator('treyrust', 'treyrust.com')
 	posts = tumProp.getPosts()
 
+	if not posts:
+		return render_template('blogroll.html', kit = getKit('blog'), failedLoad = True)
+
 	return render_template('blogroll.html', kit = getKit('blog'), posts = posts)
+
+@app.route('/postmortems/', methods=['GET'])
+def postmortems_get():
+	tumProp = tumblrpropagator.tumblrPropagator('treyrust', 'project postmortems')
+	posts = tumProp.getPosts()
+
+	if not posts:
+		return render_template('blogroll.html', kit = getKit('postmortems'), failedLoad = True)
+
+	return render_template('blogroll.html', kit = getKit('postmortems'), posts = posts)
+
 
 @app.route('/projects/<projectName>', methods=['GET'])
 def projects_name_get(projectName):
