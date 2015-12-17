@@ -20,29 +20,28 @@ def getKit(base):
 
 	return {'nav': cleanedNavLinks}
 
+
+def blogHelper(page, tag):
+	tumProp = tumblrpropagator.tumblrPropagator('treyrust', tag)
+	posts = tumProp.getPosts()
+
+	if not posts:
+		return render_template('blogroll.html', kit = getKit(page), failedLoad = True)
+
+	return render_template('blogroll.html', kit = getKit(page), posts = posts)
+
+
 @app.route('/', methods=['GET'])
 def root_get():
 	return redirect('/blog/')
 
 @app.route('/blog/', methods=['GET'])
 def blog_get():
-	tumProp = tumblrpropagator.tumblrPropagator('treyrust', 'treyrust.com')
-	posts = tumProp.getPosts()
-
-	if not posts:
-		return render_template('blogroll.html', kit = getKit('blog'), failedLoad = True)
-
-	return render_template('blogroll.html', kit = getKit('blog'), posts = posts)
+	return blogHelper('blog', 'treyrust.com')
 
 @app.route('/postmortems/', methods=['GET'])
 def postmortems_get():
-	tumProp = tumblrpropagator.tumblrPropagator('treyrust', 'project postmortems')
-	posts = tumProp.getPosts()
-
-	if not posts:
-		return render_template('blogroll.html', kit = getKit('postmortems'), failedLoad = True)
-
-	return render_template('blogroll.html', kit = getKit('postmortems'), posts = posts)
+	return blogHelper('postmortems', 'project postmortems')
 
 
 @app.route('/projects/<projectName>', methods=['GET'])
