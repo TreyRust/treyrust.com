@@ -193,7 +193,7 @@ a:hover
 
 #fbContainer
 {
-	position: absolute;
+	position: fixed;
 	left: 10px;
 	bottom: 40px;
 }
