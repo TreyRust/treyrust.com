@@ -194,8 +194,8 @@ a:hover
 #fbContainer
 {
 	position: fixed;
-	left: 10px;
-	bottom: 40px;
+	right: 10px;
+	bottom: 300px;
 }
 
 .fbButtons
@@ -206,9 +206,6 @@ a:hover
 	font-weight: bold;
 	float: left;
 }
-
-
-
 
 @keyframes navHoverIn
 {
