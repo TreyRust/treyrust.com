@@ -10,11 +10,14 @@
 			<img src={{ img }} />
 		{% endfor %}
 	{% endif %}
+
 	{{ body|safe }}
 
 	<a href='{{ link }}' target="_blank">View on tumblr</a>
 
-	<div class='postDivider'></div>
+	{% if not loop.last %}
+		<div class='postDivider'></div>
+	{% endif %}
 {% endfor %}
 
 
