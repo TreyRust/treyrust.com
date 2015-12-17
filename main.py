@@ -21,14 +21,20 @@ def getKit(base):
 	return {'nav': cleanedNavLinks}
 
 
-def blogHelper(page, tag):
+def blogHelper(page, tag, startPos = 0, currentPage = 1):
 	tumProp = tumblrpropagator.tumblrPropagator('treyrust', tag)
-	posts = tumProp.getPosts()
+	posts, hasMore = tumProp.getPosts(startPos)
 
 	if not posts:
 		return render_template('blogroll.html', kit = getKit(page), failedLoad = True)
 
-	return render_template('blogroll.html', kit = getKit(page), posts = posts)
+
+
+	return render_template('blogroll.html', kit = getKit(page),
+											posts = posts,
+											hasMore = hasMore,
+											currentPage = currentPage,
+											pagination = True)
 
 
 @app.route('/', methods=['GET'])
@@ -36,8 +42,23 @@ def root_get():
 	return redirect('/blog/')
 
 @app.route('/blog/', methods=['GET'])
-def blog_get():
-	return blogHelper('blog', 'treyrust.com')
+@app.route('/blog/page/<num>', methods=['GET'])
+def blog_get(page = None, num = None):
+	currentPage = 1
+	startPos = 0
+	if num:
+
+		pageNum = 1
+		try:
+			pageNum = int(num)
+		except: #this way, if we didn't get an int, it just defaults to 0 anyway
+			pass
+
+		if pageNum > 1:
+			currentPage = pageNum
+			startPos = (pageNum - 1) * 10 #Ten results per page.
+
+	return blogHelper('blog', 'treyrust.com', startPos, currentPage)
 
 @app.route('/postmortems/', methods=['GET'])
 def postmortems_get():

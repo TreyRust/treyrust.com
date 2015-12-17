@@ -50,14 +50,13 @@
 	<p id='siteTitle'>TreyRust</p>
 
 </div>
-
-{% if paginated %}
+{% if pagination %}
 <div id='fbContainer'>
-	{% if pageBack %}
-		<a href='{{ pageBack }}' class='fbButtons'><</a>
+	{% if hasMore %}
+		<a href='/blog/page/{{ currentPage + 1 }}' class='fbButtons'><</a>
 	{% endif %}
-	{% if pageForward %}
-		<a href='{{ pageForward }}' class='fbButtons'>></a>
+	{% if currentPage > 1 %}
+		<a href='/blog/page/{{ currentPage - 1 }}' class='fbButtons'>></a>
 	{% endif %}
 </div>
 {% endif %}

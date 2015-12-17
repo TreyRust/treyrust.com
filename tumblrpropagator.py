@@ -15,9 +15,9 @@ class tumblrPropagator():
 		# a variable. And then the -2 removes the semicolon.
 		return json.loads(resp.text[21:-2])
 
-	def getPosts(self, limit = 10):
+	def _getPostsHelper(self, startPos = 0, limit = 10):
 		blog = self._tumblrGetRequest(
-			"http://%s.tumblr.com/api/read/json?tagged=%s" % (self.baseUrl, self.scrapeTag))
+			"http://%s.tumblr.com/api/read/json?tagged=%s&start=%s&num=%s" % (self.baseUrl, self.scrapeTag, startPos, limit))
 
 		miscount = 0
 		allPosts = []
@@ -33,3 +33,22 @@ class tumblrPropagator():
 				# to grab more posts to fill in the blanks. But later.
 
 		return allPosts
+
+
+	def getPosts(self, startPos = 0, limit = 10):
+		allPosts = self._getPostsHelper(startPos, limit)
+
+		#Do a quick check to see if there are posts beyond the horizon.
+		offset = 0
+		if startPos == 0:
+			offset = limit
+		else:
+			offset = startPos + limit
+
+		singlePost = self._getPostsHelper(offset, 1)
+
+		hasMore = True
+		if singlePost == []:
+			hasMore = False
+
+		return allPosts, hasMore
