@@ -111,11 +111,16 @@ a:hover
 
 .postDivider
 {
-	width: 600px;
+	
 	height: 1px;
 	background-color: silver;
 	margin-top: 0;
 	margin-bottom: 20px;
+
+	/*It would be 600, but we subtract 20 for the additional padding that
+		contentContainer gives us*/
+	width: 580px;
+	margin-left: 20px;
 }
 
 #navContainer
